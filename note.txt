@@ -1,0 +1,36 @@
+Résumé du fichier server.ts (Express, TypeScript)
+
+1. Importation des modules :
+- express : framework pour créer le serveur et gérer les routes.
+- cors : gère la sécurité des requêtes cross-origin.
+- cookie-parser : permet de lire et manipuler les cookies.
+- compression : compresse les réponses HTTP pour améliorer les performances.
+- helmet : ajoute des protections de sécurité HTTP.
+- Types et middlewares personnalisés (config, rate limit, routes).
+
+2. Création de l'application Express :
+- const app = express();
+
+3. Configuration CORS :
+- Autorise toutes les origines en développement, bloque en production.
+
+4. Ajout des middlewares :
+- cors : contrôle l'accès cross-origin.
+- express.json : gère les requêtes JSON.
+- express.urlencoded : gère les formulaires HTML.
+- cookieParser : gère les cookies.
+- compression : compresse les réponses si > 1024 octets.
+- helmet : ajoute des protections de sécurité.
+- limiter : limite le nombre de requêtes par client.
+
+5. Démarrage du serveur :
+- Ajoute le routeur /api/v1.
+- Lance le serveur sur le port défini dans la config.
+- Affiche un message en cas de succès ou d'erreur.
+
+6. Structure recommandée :
+- Utiliser des variables d'environnement pour la configuration.
+- Séparer les middlewares et les routes pour plus de clarté.
+- Ajouter des protections et des limitations pour la sécurité et la performance.
+
+Ce résumé t'aidera à comprendre rapidement le rôle de chaque partie du code lors de futures modifications.
