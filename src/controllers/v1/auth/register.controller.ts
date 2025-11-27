@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { generateAccessToken, generateRefreshToken } from '@/lib/jwt';
 import { logger } from '@/lib/winston';
-import User, { IUser } from '@/models/user';
+import User, { IUser } from '@/models/user.model';
 import { getUsername } from '@/utils';
 
 type UserData = Pick<IUser, 'email' | 'password' | 'role'>;
@@ -12,12 +12,14 @@ async function register(req: Request, res: Response): Promise<void> {
 
   try {
     const username = getUsername();
-    const newUser = await User.create({
+    const newUser = new User({
       username,
       email,
       password,
       role,
     });
+
+    await newUser.save();
 
     const accessToken = generateAccessToken(newUser._id);
     const refreshToken = generateRefreshToken(newUser._id);
@@ -33,6 +35,7 @@ async function register(req: Request, res: Response): Promise<void> {
         id: newUser._id,
         username: newUser.username,
         email: newUser.email,
+        password: newUser.password,
         role: newUser.role,
       },
       accessToken,

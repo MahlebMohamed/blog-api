@@ -1,6 +1,7 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema, Document } from 'mongoose';
+import bcrypt from 'bcrypt';
 
-export interface IUser {
+export interface IUser extends Document {
   username: string;
   email: string;
   password: string;
@@ -33,7 +34,6 @@ const userSchema = new Schema<IUser>(
     password: {
       type: String,
       required: [true, 'Password is required'],
-      select: false,
     },
     role: {
       type: String,
@@ -62,5 +62,16 @@ const userSchema = new Schema<IUser>(
   },
   { timestamps: true },
 );
+
+userSchema.pre('save', async function () {
+  console.log('HOOK PRE-SAVE TRIGGERED');
+  if (!this.isModified('password')) {
+    console.log('Password NOT modified');
+    return;
+  }
+
+  console.log('Hashing password...');
+  this.password = await bcrypt.hash(this.password, 12);
+});
 
 export default model<IUser>('User', userSchema);

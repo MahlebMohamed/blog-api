@@ -1,7 +1,7 @@
 import { Router } from 'express';
 const router = Router();
 
-import authRoutes from './auth';
+import authRoutes from '@/routes/v1/auth.routes';
 
 router.get('/', (req, res) => {
   res.status(200).json({
