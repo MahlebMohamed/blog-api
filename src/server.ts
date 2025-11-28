@@ -6,11 +6,11 @@ import helmet from 'helmet';
 
 import type { CorsOptions } from 'cors';
 
+import mountRoutes from '@/routes';
 import config from './config';
-import limiter from './lib/express_rate_limit';
-import { connectToDatabase, disconnectFromDatabase } from './lib/mongoose';
-import v1Router from './routes/v1';
-import { logger } from './lib/winston';
+import limiter from '@/utils/express_rate_limit';
+import { connectToDatabase, disconnectFromDatabase } from '@/config/database';
+import { logger } from '@/utils/winston';
 
 const app = express();
 
@@ -45,7 +45,7 @@ app.use(limiter);
   try {
     await connectToDatabase();
 
-    app.use('/api/v1', v1Router);
+    mountRoutes(app);
 
     app.listen(config.PORT, () => {
       logger.info(`Server is running on http://localhost:${config.PORT}`);

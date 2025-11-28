@@ -64,13 +64,10 @@ const userSchema = new Schema<IUser>(
 );
 
 userSchema.pre('save', async function () {
-  console.log('HOOK PRE-SAVE TRIGGERED');
   if (!this.isModified('password')) {
-    console.log('Password NOT modified');
     return;
   }
 
-  console.log('Hashing password...');
   this.password = await bcrypt.hash(this.password, 12);
 });
 
