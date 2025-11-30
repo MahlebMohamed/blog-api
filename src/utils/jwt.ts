@@ -17,3 +17,11 @@ export function generateRefreshToken(userId: Types.ObjectId): string {
     subject: 'refreshToken',
   });
 }
+
+export function verifyAccessToken(token: string) {
+  return jwt.verify(token, config.JWT_ACCESS_SECRET as string);
+}
+
+export function verifyRefreshToken(token: string) {
+  return jwt.verify(token, config.JWT_REFRESH_SECRET as string);
+}

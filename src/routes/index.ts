@@ -1,6 +1,7 @@
 import type { Router } from 'express';
 
 import authRoutes from '@/routes/auth.route';
+import userRoutes from '@/routes/user.route';
 
 // router.get('/', (req, res) => {
 //   res.status(200).json({
@@ -15,6 +16,7 @@ import authRoutes from '@/routes/auth.route';
 
 function mountRoutes(app: Router): void {
   app.use('/api/v1/auth', authRoutes);
+  app.use('/api/v1/user', userRoutes);
 }
 
 export default mountRoutes;

@@ -5,6 +5,7 @@ import express from 'express';
 import helmet from 'helmet';
 
 import type { CorsOptions } from 'cors';
+import { Request, Response, NextFunction } from 'express';
 
 import mountRoutes from '@/routes';
 import config from './config';

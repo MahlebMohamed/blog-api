@@ -11,7 +11,8 @@
         "removeComments": true,
         "paths": {
             "@/*": ["./src/*"]
-        }
+        },
+        "typeRoots": [ "./src/@types"]
     },
     "include": [
         "src/**/*"
