@@ -19,7 +19,7 @@ export default function authorize(roles: AuthRole[]) {
         return;
       }
 
-      if (!roles.includes(user.role as AuthRole)) {
+      if (!roles.includes(user.role)) {
         res.status(403).json({
           code: 'Forbidden',
           message: 'You do not have permission to access this resource',

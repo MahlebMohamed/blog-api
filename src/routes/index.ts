@@ -16,7 +16,7 @@ import userRoutes from '@/routes/user.route';
 
 function mountRoutes(app: Router): void {
   app.use('/api/v1/auth', authRoutes);
-  app.use('/api/v1/user', userRoutes);
+  app.use('/api/v1/users', userRoutes);
 }
 
 export default mountRoutes;
