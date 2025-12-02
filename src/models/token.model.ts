@@ -9,10 +9,12 @@ const tokenModel = new Schema<Itoken>({
   token: {
     type: String,
     required: true,
+    index: true,
   },
   userId: {
     type: Schema.Types.ObjectId,
     required: true,
+    index: true,
   },
 });
 
