@@ -20,7 +20,12 @@ export async function getUsers(req: Request, res: Response) {
     const limit = parseInt(req.query.limit as string) || 8;
     const skip = (page - 1) * limit;
 
-    const users = await User.find({}).skip(skip).limit(limit).select('-_v');
+    const users = await User.find({})
+      .skip(skip)
+      .limit(limit)
+      .select('-_v')
+      .lean()
+      .exec();
 
     return res.status(200).json({ page, result: users.length, data: users });
   } catch (error) {
