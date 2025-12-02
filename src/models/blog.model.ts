@@ -30,7 +30,6 @@ const blogSchema = new Schema<IBlog>(
       required: [true, 'Slug is required'],
       unique: true,
       trim: true,
-      index: true,
     },
     content: {
       type: String,
