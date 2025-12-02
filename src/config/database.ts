@@ -13,6 +13,11 @@ const clientOptions: ConnectOptions = {
     strict: true,
     deprecationErrors: true,
   },
+  maxPoolSize: 10,
+  minPoolSize: 2,
+  maxIdleTimeMS: 30000,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
 };
 
 export const connectToDatabase = async (): Promise<void> => {

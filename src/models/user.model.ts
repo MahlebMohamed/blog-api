@@ -23,13 +23,15 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: [true, 'Username is required'],
       maxLength: [30, 'Username cannot exceed 30 characters'],
-      unique: [true, 'Username must be unique'],
+      unique: true,
+      index: true,
     },
     email: {
       type: String,
       required: [true, 'Email is required'],
       maxLength: [50, 'Email cannot exceed 100 characters'],
-      unique: [true, 'Email must be unique'],
+      unique: true,
+      index: true,
     },
     password: {
       type: String,

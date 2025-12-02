@@ -5,15 +5,17 @@ interface Itoken {
   userId: Types.ObjectId;
 }
 
-const tokenModel = new Schema<Itoken>({
+const tokenSchema = new Schema<Itoken>({
   token: {
     type: String,
     required: true,
+    index: true,
   },
   userId: {
     type: Schema.Types.ObjectId,
     required: true,
+    index: true,
   },
 });
 
-export default model<Itoken>('Token', tokenModel);
+export default model<Itoken>('Token', tokenSchema);
