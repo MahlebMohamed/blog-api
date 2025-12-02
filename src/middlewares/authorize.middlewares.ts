@@ -10,7 +10,7 @@ export default function authorize(roles: AuthRole[]) {
     const userId = req.userId;
 
     try {
-      const user = await User.findById(userId).select('role').exec();
+      const user = await User.findById(userId).select('role').lean().exec();
       if (!user) {
         res.status(401).json({
           code: 'NotFound',
