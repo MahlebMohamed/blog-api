@@ -20,7 +20,7 @@ const likeSchema = new Schema<ILike>(
     },
     commentId: {
       type: Schema.Types.ObjectId,
-      //   ref: 'Comment',
+      ref: 'Comment',
     },
   },
   {

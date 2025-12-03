@@ -8,6 +8,7 @@ import User from '@/models/user.model';
 import { deleteImageLocally } from '@/utils/saveImageLocally';
 import { logger } from '@/utils/winston';
 import slugify from 'slugify';
+import config from '@/config';
 
 const window = new JSDOM('').window;
 const purify = DOMPurify(window);
@@ -50,7 +51,8 @@ export async function createBlog(req: Request, res: Response) {
 }
 
 export async function getAllBlogs(req: Request, res: Response) {
-  const limit = parseInt(req.query.limit as string, 10) || 10;
+  const limit =
+    parseInt(req.query.limit as string, 10) || config.LIMIT_GET_ALL_BLOGS;
   const page = parseInt(req.query.page as string, 10) || 1;
   const skip = (page - 1) * limit;
 
