@@ -3,7 +3,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 export interface IComment extends Document {
   blogId: mongoose.Types.ObjectId;
   userId: mongoose.Types.ObjectId;
-  content: string;
+  commentContent: string;
   likesCount: number;
   createdAt: Date;
   updatedAt: Date;
@@ -21,11 +21,11 @@ const commentSchema = new Schema<IComment>(
       ref: 'User',
       required: [true, 'User ID is required'],
     },
-    content: {
+    commentContent: {
       type: String,
-      required: [true, 'Content is required'],
+      required: [true, 'commentContent is required'],
       trim: true,
-      maxLength: [500, 'Content cannot exceed 500 characters'],
+      maxLength: [500, 'commentContent cannot exceed 500 characters'],
     },
     likesCount: {
       type: Number,

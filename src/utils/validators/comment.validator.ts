@@ -8,12 +8,12 @@ export const createCommentValidator = [
     .withMessage('Blog ID is required')
     .isMongoId()
     .withMessage('Invalid blog ID'),
-  body('content')
+  body('commentContent')
     .trim()
     .notEmpty()
-    .withMessage('Content is required')
+    .withMessage('commentContent is required')
     .isLength({ max: 500 })
-    .withMessage('Content cannot exceed 500 characters'),
+    .withMessage('commentContent cannot exceed 500 characters'),
   validationMiddleware,
 ];
 
@@ -40,12 +40,12 @@ export const updateCommentValidator = [
     .withMessage('Comment ID is required')
     .isMongoId()
     .withMessage('Invalid comment ID'),
-  body('content')
+  body('commentContent')
     .trim()
     .notEmpty()
-    .withMessage('Content is required')
+    .withMessage('commentContent is required')
     .isLength({ max: 500 })
-    .withMessage('Content cannot exceed 500 characters'),
+    .withMessage('commentContent cannot exceed 500 characters'),
   validationMiddleware,
 ];
 

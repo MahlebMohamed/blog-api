@@ -12,9 +12,10 @@ const purify = DOMPurify(window);
 
 export async function createComment(req: Request, res: Response) {
   const { blogId } = req.params;
-  const { content } = req.body;
+  const { commentContent } = req.body;
   const userId = req.userId;
-  const cleanContent = purify.sanitize(content);
+
+  const cleancommentContent = purify.sanitize(commentContent);
 
   try {
     const blog = await Blog.findById(blogId)
@@ -31,7 +32,7 @@ export async function createComment(req: Request, res: Response) {
     const newComment = await Comment.create({
       blogId,
       userId,
-      content: cleanContent,
+      commentContent: cleancommentContent,
     });
 
     blog.commentsCount++;
@@ -73,7 +74,7 @@ export async function getCommentsByBlogId(req: Request, res: Response) {
     }
 
     const comments = await Comment.find({ blogId })
-      .populate('userId', 'username email')
+      .populate('userId', 'username email -_id')
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
@@ -100,7 +101,7 @@ export async function getCommentsByBlogId(req: Request, res: Response) {
 
 export async function updateComment(req: Request, res: Response) {
   const { commentId } = req.params;
-  const { content } = req.body;
+  const { commentContent } = req.body;
   const userId = req.userId;
 
   try {
@@ -122,7 +123,7 @@ export async function updateComment(req: Request, res: Response) {
       return;
     }
 
-    comment.content = content;
+    comment.commentContent = commentContent;
     await comment.save();
 
     logger.info(`Comment updated: ${commentId}`);
