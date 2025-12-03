@@ -1,11 +1,11 @@
-import { Schema, model, Types, Document } from 'mongoose';
+import { model, Schema, Types } from 'mongoose';
 
 export interface IBlog {
   title: string;
   slug: string;
   content: string;
   banner: {
-    publicId: string;
+    filename: string;
     url: string;
     width: number;
     height: number;

@@ -30,6 +30,9 @@ const corsOptions: CorsOptions = {
 
 app.use(cors(corsOptions));
 
+// Servir les fichiers statiques (images uploadées)
+app.use('/uploads', express.static('uploads'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
