@@ -28,7 +28,7 @@ const blogSchema = new Schema<IBlog>(
     slug: {
       type: String,
       required: [true, 'Slug is required'],
-      unique: [true, 'Slug is unique'],
+      unique: true,
       trim: true,
     },
     content: {
@@ -45,6 +45,7 @@ const blogSchema = new Schema<IBlog>(
       type: Types.ObjectId,
       ref: 'User',
       required: true,
+      index: true,
     },
     viewsCount: {
       type: Number,
@@ -63,6 +64,7 @@ const blogSchema = new Schema<IBlog>(
       enum: ['draft', 'published'],
       default: 'draft',
       required: true,
+      index: true,
     },
   },
   { timestamps: true },

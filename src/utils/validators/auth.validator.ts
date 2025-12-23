@@ -43,13 +43,7 @@ export const loginValidator = [
     .isLength({ max: 50 })
     .withMessage('Email must be at most 50 characters long')
     .isEmail()
-    .withMessage('Invalid email format')
-    .custom(async (value) => {
-      const userExists = await User.exists({ email: value });
-      if (!userExists) {
-        throw new Error('Email is already exists');
-      }
-    }),
+    .withMessage('Invalid email format'),
 
   body('password')
     .notEmpty()
